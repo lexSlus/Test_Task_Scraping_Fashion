@@ -22,8 +22,8 @@ class ProductScraper:
 
     def init_driver(self):
         chrome_options = Options()
-        chrome_options.add_argument("--headless")  # Runs Chrome in headless mode.
-        chrome_options.add_argument("--no-sandbox")  # Bypass OS security model, VERY IMPORTANT for Docker
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--no-sandbox")  
         chrome_options.add_argument("--disable-dev-shm-usage")
         service = Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=chrome_options)
@@ -136,7 +136,7 @@ class ProductScraper:
             for key, value in item.items():
                 tag_name = f"g:{key}"
                 if key == 'price':
-                    value = f"{value} USD"  # Adding currency to the price
+                    value = f"{value} USD"
                 sub_element = ET.SubElement(item_element, tag_name)
                 sub_element.text = str(value) if value else 'None'
 
